@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container version="2">
+  <Name>meru</Name>
+  <Repository>ghcr.io/mspdaniel/meru:3.63.2</Repository>
+  <Registry>https://github.com/MSPDaniel/meru/pkgs/container/meru</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/MSPDaniel/meru/issues</Support>
+  <Project>https://meru.so/</Project>
+  <Overview>Meru email desktop application in a browser, using LinuxServer Selkies. Webtop CUSTOM_USER/PASSWORD authentication. Uses the official Meru Linux package.</Overview>
+  <Category>Productivity:</Category>
+  <WebUI>https://[IP]:[PORT:3001]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/MSPDaniel/meru/main/unraid/meru.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/MSPDaniel/meru/main/assets/meru-icon.png</Icon>
+  <ExtraParams>--security-opt seccomp=unconfined --shm-size=1g</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Web interface (HTTPS)" Target="3001" Default="3011" Mode="tcp" Description="Host HTTPS port" Type="Port" Display="always" Required="true" Mask="false">3011</Config>
+  <Config Name="Appdata" Target="/config" Default="/mnt/user/appdata/meru" Mode="rw" Description="Persistent application profile and settings" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/meru</Config>
+  <Config Name="Webtop Username" Target="CUSTOM_USER" Default="meru" Mode="" Description="Required HTTP Basic authentication username" Type="Variable" Display="always" Required="true" Mask="false">meru</Config>
+  <Config Name="Webtop Password" Target="PASSWORD" Default="" Mode="" Description="Set a strong unique password" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="Unraid nobody user ID" Type="Variable" Display="advanced" Required="true" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Unraid users group ID" Type="Variable" Display="advanced" Required="true" Mask="false">100</Config>
+  <Config Name="Timezone" Target="TZ" Default="America/Chicago" Mode="" Description="Timezone" Type="Variable" Display="advanced" Required="false" Mask="false">America/Chicago</Config>
+  <Config Name="Use X11" Target="PIXELFLUX_WAYLAND" Default="false" Mode="" Description="Use X11 capture" Type="Variable" Display="advanced" Required="true" Mask="false">false</Config>
+</Container>

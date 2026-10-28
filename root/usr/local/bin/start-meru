@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/config/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-/config/.cache}"
+mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+# Resolve executable installed by the official Debian package.
+for app in meru Meru gmail-desktop; do
+  if command -v "$app" >/dev/null 2>&1; then
+    echo "Launching $app"
+    exec "$app"
+  fi
+done
+printf 'Meru executable not found. Inspect package contents: dpkg -L meru\n' >&2
+exit 1

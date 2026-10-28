@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+# Electron user profile lives under /config through LinuxServer's home mapping.
+exec /usr/bin/meru --disable-gpu

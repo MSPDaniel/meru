@@ -1,0 +1,23 @@
+services:
+  meru:
+    build:
+      context: .
+      args:
+        MERU_VERSION: ${MERU_VERSION:-3.63.2}
+    image: meru:${MERU_VERSION:-3.63.2}
+    container_name: meru
+    restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined # Selkies browser-streaming compatibility; reassess after testing
+    ports:
+      - "${BIND_IP:-0.0.0.0}:3011:3001"
+    environment:
+      PUID: ${PUID:-99}
+      PGID: ${PGID:-100}
+      TZ: ${TZ:-America/Chicago}
+      CUSTOM_USER: ${WEBTOP_USER:?Set WEBTOP_USER in .env}
+      PASSWORD: ${WEBTOP_PASSWORD:?Set WEBTOP_PASSWORD in .env}
+      PIXELFLUX_WAYLAND: "false"
+    volumes:
+      - /mnt/user/appdata/meru:/config
+    shm_size: "1gb"
